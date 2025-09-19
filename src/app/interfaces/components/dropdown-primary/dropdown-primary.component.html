@@ -1,1 +1,31 @@
-<p>dropdown-primary works!</p>
+<div
+  class="dropdown"
+  [class.dropdown--left]="type() === 'dropdown'">
+  <button
+    class="dropdown__toggle"
+    [class.dropdown__toggle--dropdown]="type() === 'dropdown'"
+    (click)="toggleDropdown()">
+    
+    @if(type() === 'select'){
+      {{ selectedValue }}
+    }
+
+    <img
+      [src]="(type() === 'select') ? './caret-down-outline.svg' : './ellipsis-vertical-outline.svg'"
+      alt="icono">
+  </button>
+
+  <ul
+    class="dropdown__menu"
+    [class.dropdown__menu--active]="isOpen()">
+    
+    @for (item of items; track item) {
+      <li
+        class="dropdown__item"
+        (click)="selectItem(item)">
+        {{ item }}
+      </li>
+    }
+  </ul>
+  
+</div>

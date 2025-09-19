@@ -1,6 +1,7 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
+import { FORM_ERROR_MESSAGES } from '../constants/form-errors';
 
 // Validador asíncrono para ID único
 export function productIdUniqueValidator(): AsyncValidatorFn {
@@ -26,4 +27,20 @@ export function releaseDateValidator(control: AbstractControl): ValidationErrors
     today.setHours(0, 0, 0, 0);
 
     return selectedDate >= today ? null : { invalidReleaseDate: true };
+}
+
+// Mensajes de error
+export function getFormErrorMessage(control: FormControl): string {
+  if (!control?.errors) return '';
+
+  const firstErrorKey = Object.keys(control.errors)[0];
+
+  // Optional chaining + null check para TypeScript
+  const controlName = control.parent
+    ? Object.keys(control.parent.controls).find(key => control.parent?.get(key) === control) ?? null
+    : null;
+
+  if (!controlName) return '';
+
+  return FORM_ERROR_MESSAGES[controlName]?.[firstErrorKey] || '';
 }

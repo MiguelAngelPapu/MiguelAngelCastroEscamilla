@@ -12,14 +12,14 @@
         class="add-product__field"
         [control]="form.controls['id']"
         [label]="'ID'"
-        [errorMessage]="getFormErrorMessage('id')"
+        [errorMessage]="getFormErrorMessage(form.controls['id'])"
       />
       <input-primary
         class="add-product__field"
         [control]="form.controls['name']"
         [label]="'Nombre'"
         [placeholder]="'Tarjeta Crédito'"
-        [errorMessage]="getFormErrorMessage('name')"
+        [errorMessage]="getFormErrorMessage(form.controls['name'])"
       />
     </div>
 
@@ -28,13 +28,13 @@
         class="add-product__field"
         [control]="form.controls['description']"
         [label]="'Descripción'"
-        [errorMessage]="getFormErrorMessage('description')"
+        [errorMessage]="getFormErrorMessage(form.controls['description'])"
       />
       <input-primary
         class="add-product__field"
         [control]="form.controls['logo']"
         [label]="'Logo'"
-        [errorMessage]="getFormErrorMessage('logo')"
+        [errorMessage]="getFormErrorMessage(form.controls['logo'])"
       />
     </div>
 
@@ -44,14 +44,14 @@
         [control]="form.controls['date_relese']"
         [type]="'date'"
         [label]="'Fecha liberación'"
-        [errorMessage]="getFormErrorMessage('date_relese')"
+        [errorMessage]="getFormErrorMessage(form.controls['date_relese'])"
       />
       <input-primary
         class="add-product__field"
         [control]="form.controls['date_revision']"
         [type]="'date'"
         [label]="'Fecha Revisión'"
-        [errorMessage]="getFormErrorMessage('date_revision')"
+        [errorMessage]="getFormErrorMessage(form.controls['date_revision'])"
       />
     </div>
   </form>

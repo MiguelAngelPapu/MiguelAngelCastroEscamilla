@@ -1,0 +1,80 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &__toggle {
+    padding: 6px 20px;
+    border: 1px solid var(--bg-primary-200);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+
+    & img {
+      width: 20px;
+      height: 20px;
+      object-fit: fill;
+    }
+
+    &--dropdown {
+      padding: 0;
+      border: none;
+      flex-direction: column;
+    }
+  }
+
+ 
+&__menu {
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--bg-primary-0);
+    border: 1px solid var(--bg-primary-100);
+    border-radius: 4px;
+    display: none;
+    min-width: 100%;
+
+    &.dropdown__menu--active {
+      display: block;
+    }
+  }
+
+  // --- MODIFICACIÓN CLAVE AQUÍ ---
+  // Cuando el dropdown tiene el modificador '--left'
+  &--left {
+    // No necesitamos estilos en el contenedor, solo en su menú hijo.
+    
+    // Anidamos la regla para el menú aquí
+    .dropdown__menu {
+      // 1. Alinear la parte superior del menú con la del botón
+      top: 0; 
+      
+      // 2. Anular el 'left' por defecto para evitar conflictos
+      left: auto; 
+      
+      // 3. Mover el menú completamente a la izquierda del contenedor
+      right: 100%; 
+      
+      // 4. (Opcional) Añadir un pequeño margen para que no esté pegado
+      margin-right: 8px; 
+    }
+  }
+
+  &__item {
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text-900);
+    &:hover {
+      background-color: var(--bg-primary-100);
+    }
+  }
+}
+

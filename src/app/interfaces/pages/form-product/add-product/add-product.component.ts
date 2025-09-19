@@ -1,9 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputPrimaryComponent } from '../../../components/input-primary/input-primary.component';
 import { ButtonPrimaryComponent } from "../../../components/button-primary/button-primary.component";
-import { productIdUniqueValidator, releaseDateValidator } from '../../../../core/validators/validators';
-import { FORM_ERROR_MESSAGES } from '../../../../core/constants/form-errors';
+import { productIdUniqueValidator, releaseDateValidator, getFormErrorMessage } from '../../../../core/validators/validators';
 
 
 @Component({
@@ -13,6 +12,7 @@ import { FORM_ERROR_MESSAGES } from '../../../../core/constants/form-errors';
   styleUrl: './add-product.component.scss'
 })
 export class AddProductComponent {
+[x: string]: any;
   private formBuilder = inject(FormBuilder);
 
   // Formulario reactivo
@@ -45,12 +45,8 @@ export class AddProductComponent {
     });
   })();
 
-  // Mensajes de error
-  getFormErrorMessage(controlName: string): string {
-    const control = this.form.get(controlName);
-    if (!control?.errors) return '';
-    const firstErrorKey = Object.keys(control.errors)[0];
-    return FORM_ERROR_MESSAGES[controlName]?.[firstErrorKey] || '';
+  getFormErrorMessage(control: FormControl): string {
+    return getFormErrorMessage(control);
   }
 
   onSubmit(): void {

@@ -1,5 +1,7 @@
 <div class="input-field">
-  <label class="input-field__label">{{ label() }}</label>
+  @if (label()) {
+    <label class="input-field__label">{{ label() }}</label>
+  }
 
   <input
     [type]="type()"

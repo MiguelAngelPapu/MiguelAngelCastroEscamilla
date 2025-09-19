@@ -1,1 +1,31 @@
-<p>list-products works!</p>
+<section class="form-list-product">
+
+  <article class="form-list-product__actions">
+    <input-primary
+      class="form-list-product__search"
+      [control]="form.controls['search']"
+      [label]="''"
+      [placeholder]="'Buscar...'"
+      [errorMessage]="getFormErrorMessage(form.controls['search'])"
+    />
+    <button-primary 
+        class="form-list-product__add-button"
+        [type]="'button'"
+        [variant]="'confirm'"
+        [label]="'Agregar'"
+        [routerLink]="['/form-product', 'add']"
+    />
+  </article>
+  
+  <article class="form-list-product__table-wrapper">
+    <table-primary class="form-list-product__table" />
+  </article>
+
+  <article class="form-list-product__footer">
+    <span class="form-list-product__results">5 Resultados</span>
+    <dropdown-primary
+      class="form-list-product__dropdown"
+      [type]="'select'" />
+  </article>
+  
+</section>

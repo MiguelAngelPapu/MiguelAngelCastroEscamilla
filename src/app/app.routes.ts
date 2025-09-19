@@ -18,15 +18,13 @@ export const routes: Routes = [
         component: FormProductComponent,
         children: [
             {
-                path: 'add-product',
+                path: 'add',
                 component: AddProductComponent,
-                outlet: 'add-primary',
             },
             {
-                path: '',
-                redirectTo: '/form-product/(add-primary:add-product)',
-                pathMatch: 'full',
-            },
+                path: '**',
+                redirectTo: 'add'
+            }
         ],
     },
     {

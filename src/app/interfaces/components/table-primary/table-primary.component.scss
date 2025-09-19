@@ -1,0 +1,85 @@
+.table-primary {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+
+  &__header {
+    background-color: var(--bg-primary-300);
+    border-bottom: 1px solid var(--bg-primary-200);
+  }
+
+  &__row {
+    border-bottom: 1px solid var(--bg-primary-200);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__header-cell {
+    padding: 25px 0px;
+    text-align: left;
+    color: var(--text-900);
+  
+    &:first-child {
+      text-align: center;
+    }
+  }
+
+  &__cell {
+    padding: 12px 0px;
+    color: var(--bg-primary-200);
+    vertical-align: middle;
+
+    &:first-child {
+      text-align: center;
+    }
+  }
+
+  &__logo {
+    width: 80px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  &__cell--actions {
+    text-align: right;
+  }
+
+
+  &__header-content {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+  }
+
+  &__info-icon {
+    width: 25px;
+  }
+
+  @media (min-width: 150px) and (max-width: 900px) {
+    width: 850px;
+
+    &__header-cell {
+      text-align: left;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    &__cell {
+      text-align: left;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    &__header-content {
+      justify-content: flex-start; 
+    }
+    
+  }
+}

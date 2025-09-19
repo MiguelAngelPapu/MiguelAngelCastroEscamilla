@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { DropdownPrimaryComponent } from "../dropdown-primary/dropdown-primary.component";
 
 @Component({
-  selector: 'app-table-primary',
-  imports: [],
+  selector: 'table-primary',
+  imports: [DropdownPrimaryComponent],
   templateUrl: './table-primary.component.html',
   styleUrl: './table-primary.component.scss'
 })
