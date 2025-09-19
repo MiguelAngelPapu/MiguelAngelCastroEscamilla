@@ -16,7 +16,7 @@ export const FORM_ERROR_MESSAGES: Record<string, Record<string, string>> = {
     maxlength: 'Máximo 200 caracteres'
   },
   logo: { required: 'El logo es obligatorio' },
-  date_relese: {
+  date_release: {
     required: 'La fecha de liberación es obligatoria',
     invalidReleaseDate: 'Debe ser hoy o posterior'
   },

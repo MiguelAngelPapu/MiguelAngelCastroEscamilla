@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { ProductRepository } from '../domain/repositories/product.repository';
 import { Observable } from 'rxjs';
-import { Product, ProductDeletionConfirmation } from '../domain/models/product.model';
+import { Product, ProductDeletionConfirmation, MyProduct } from '../domain/models/product.model';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ProductService {
     // Inyectamos la ABSTRACCIÓN, no la implementación.
@@ -24,5 +24,23 @@ export class ProductService {
      */
     deleteProduct(id: string): Observable<ProductDeletionConfirmation> {
         return this.productRepository.deleteById(id);
+    }
+
+    /**
+     * Caso de Uso para agregar un nuevo producto.
+     * Delega la creación al repositorio.
+     * @param product El producto a agregar
+     * @returns Un Observable<Product> con el producto recién creado
+     */
+    addProduct(product: MyProduct): Observable<MyProduct> {
+        return this.productRepository.add(product);
+    }
+
+    /**
+   * Caso de Uso para verificar un producto por su ID.
+   * Devuelve true o false según la verificación.
+   */
+    verificationProduct(id: string): Observable<boolean> {
+        return this.productRepository.verificationProduct(id);
     }
 }

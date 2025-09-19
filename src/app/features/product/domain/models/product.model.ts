@@ -3,8 +3,20 @@ export interface Product {
   name: string;
   description: string;
   logo: string;
-  date_release: Date;
+  date_releas: Date;
   date_revision: Date;
+  message?:string;
+}
+
+export interface MyProduct {
+  id: string;
+  name: string;
+  description: string;
+  logo: string;
+  date_release: string;
+  date_revision: string;
+  message?:string;
+  
 }
 
 export interface ProductDeletionConfirmation{
