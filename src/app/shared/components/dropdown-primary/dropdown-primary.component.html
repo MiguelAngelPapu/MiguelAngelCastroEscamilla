@@ -1,31 +1,28 @@
+<modal-primary [title]="title()" #dialog />
+
 <div
-  class="dropdown"
-  [class.dropdown--left]="type() === 'dropdown'">
+  class="dropdown dropdown--left">
+  
   <button
     class="dropdown__toggle"
-    [class.dropdown__toggle--dropdown]="type() === 'dropdown'"
     (click)="toggleDropdown()">
-    
-    @if(type() === 'select'){
-      {{ selectedValue }}
-    }
-
-    <img
-      [src]="(type() === 'select') ? './caret-down-outline.svg' : './ellipsis-vertical-outline.svg'"
-      alt="icono">
+    <img src="./ellipsis-vertical-outline.svg" alt="icono de más opciones">
   </button>
 
   <ul
     class="dropdown__menu"
-    [class.dropdown__menu--active]="isOpen()">
-    
-    @for (item of items; track item) {
-      <li
-        class="dropdown__item"
-        (click)="selectItem(item)">
-        {{ item }}
-      </li>
-    }
+    [class.dropdown__menu--active]="isOpen()"
+    (click)="toggleDropdown()">
+
+    <li 
+      class="dropdown__item"
+      (click)="showModalEditar()"
+      >Editar</li>
+    <li 
+      class="dropdown__item dropdown__item--danger" 
+      (click)="showModalEliminar()"
+      >Eliminar</li>
+
   </ul>
-  
+
 </div>

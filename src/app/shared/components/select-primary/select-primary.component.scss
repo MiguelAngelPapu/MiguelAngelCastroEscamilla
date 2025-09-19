@@ -1,20 +1,26 @@
-.dropdown {
+/* Usamos un bloque BEM 'select' para evitar conflictos */
+.select {
   position: relative;
   display: inline-block;
 
   &__toggle {
-    padding: 0;
-    border: none;
+    padding: 6px 20px;
+    border: 1px solid var(--bg-primary-200);
+    border-radius: 4px;
     background-color: transparent;
     cursor: pointer;
     display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 80px;
 
     & img {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
   }
- 
+
   &__menu {
     position: absolute;
     z-index: 5;
@@ -27,7 +33,7 @@
     border: 1px solid var(--bg-primary-100);
     border-radius: 4px;
     display: none;
-    min-width: 150px;
+    min-width: 100%;
 
     &--active {
       display: block;
@@ -37,25 +43,11 @@
   &__item {
     padding: 10px 15px;
     cursor: pointer;
-    display: block;
-    white-space: nowrap; // Evita que el texto se parta en varias líneas
     text-align: center;
-
+    color: var(--text-900);
+    
     &:hover {
       background-color: var(--bg-primary-100);
-    }
-
-    &--danger {
-      color: var(--error);
-    }
-  }
-
-  &--left {
-    .dropdown__menu {
-      top: 0;
-      left: auto; 
-      right: 100%; 
-      margin-right: 8px; 
     }
   }
 }

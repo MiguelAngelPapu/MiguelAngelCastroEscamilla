@@ -12,6 +12,7 @@
 }@else{
     <button 
         class="button-primary"
+        [class.button-primary--small]="size()==='small'"
         [class.button-primary--confirm]="variant() === 'confirm'"
         [class.button-primary--cancel]="variant() === 'cancel'"
         [attr.disabled]="disabled() ? true : null"

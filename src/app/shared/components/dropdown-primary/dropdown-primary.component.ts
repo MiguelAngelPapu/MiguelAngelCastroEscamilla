@@ -1,25 +1,31 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, InputSignal, signal, ViewChild } from '@angular/core';
+import { Product } from '../../../features/product/domain/models/product.model';
+import { ModalPrimaryComponent } from "../modal-primary/modal-primary.component";
 
 @Component({
   selector: 'dropdown-primary',
-  imports: [],
+  imports: [ModalPrimaryComponent],
   templateUrl: './dropdown-primary.component.html',
   styleUrl: './dropdown-primary.component.scss'
 })
 export class DropdownPrimaryComponent {
-  type = input.required<'select' | 'dropdown'>();
-  isOpen = signal<boolean>(false);
-  public items: number[] = [1, 2, 3, 4];
-  public selectedValue: number = 5;
+  @ViewChild('dialog') dialogComponent!: ModalPrimaryComponent;
 
-  // Solo abre/cierra el menú.
-  public toggleDropdown(): void {
+  id = input.required<string>();
+  name = input<string>();
+  title = signal<string>('')
+  isOpen = signal<boolean>(false);
+  
+  toggleDropdown(): void {
     this.isOpen.set(!this.isOpen());
   }
 
-  // Selecciona un valor y siempre cierra el menú.
-  public selectItem(item: number): void {
-    this.selectedValue = item;
-    this.isOpen.set(false);
+  showModalEliminar(): void {
+    this.title.set(`¿Esta seguro de eliminar el producto ${this.name()} ?`)
+    this.dialogComponent.open();
   }
+  showModalEditar(): void {
+    throw new Error('Method not implemented.');
+  }
+
 }

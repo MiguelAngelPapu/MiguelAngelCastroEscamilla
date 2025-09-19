@@ -13,11 +13,12 @@ import { toProducts } from './mappers/product.mapper';
 export class ProductApiService extends ProductRepository {
     private http = inject(HttpClient);
     private apiUrl = environment.apiUrl;
+    products = signal<Product[]>([]);
 
     override getAll(): Observable<Product[]> {
         return this.http.get<ProductApiResponse>(`${this.apiUrl}/bp/products`)
         .pipe(
-            // 2. Pasa la respuesta completa al mapper, que sabrá cómo manejarla
+            // Pasa la respuesta completa al mapper, que sabrá cómo manejarla
             map(response => toProducts(response))
         );
     }

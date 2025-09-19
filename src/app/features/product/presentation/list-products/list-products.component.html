@@ -18,20 +18,25 @@
   </article>
   
   <article class="form-list-product__table-wrapper">
-    @if (products$ | async; as products) {
       <table-primary 
           class="form-list-product__table"
-          [data]="products"
+          [data]="products()"
         />
-    }
     
   </article>
 
   <article class="form-list-product__footer">
-    <span class="form-list-product__results">5 Resultados</span>
-    <dropdown-primary
-      class="form-list-product__dropdown"
-      [type]="'select'" />
+    <span class="form-list-product__results">
+      @if (products$ | async; as products) {
+        {{ products.length }} Resultados
+      }
+    </span>
+    @if (products$ | async; as products) {
+      <select-primary 
+        [data]="products"
+        (valueChanged)="paginatedData($event)"
+      />
+    }
   </article>
   
 </section>

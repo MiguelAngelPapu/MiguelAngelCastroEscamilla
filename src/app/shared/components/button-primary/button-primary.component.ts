@@ -7,6 +7,7 @@ import { Component, input } from '@angular/core';
   styleUrl: './button-primary.component.scss'
 })
 export class ButtonPrimaryComponent {
+  size = input<'small' | 'normal'>('normal');
   label = input.required<string>();
   type = input<'button' | 'submit'>('button');
   variant = input<'confirm' | 'cancel'>('confirm');

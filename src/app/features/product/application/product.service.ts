@@ -8,8 +8,7 @@ import { Product } from '../domain/models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-
-  // Inyectamos la ABSTRACCIÓN, no la implementación.
+    // Inyectamos la ABSTRACCIÓN, no la implementación.
     private productRepository = inject(ProductRepository);
 
     // Este es el "Caso de Uso" para obtener todos los productos.

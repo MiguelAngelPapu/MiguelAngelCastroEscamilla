@@ -10,6 +10,10 @@
   cursor: pointer;
   transition: background-color, color 0.1s ease-in-out;
 
+  &--small{
+    width: 100%;
+  }
+
   &--cancel {
     background-color: var(--btn-secondary);
     color: var(--text-900);

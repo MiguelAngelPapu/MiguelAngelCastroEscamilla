@@ -36,12 +36,13 @@
                 <td class="table-primary__cell">{{ item.description }}</td>
                 <td class="table-primary__cell">{{ item.date_release | date:'dd/MM/yyyy' }}</td>
                 <td class="table-primary__cell">{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
-                <td class="table-primary__cell table-primary__cell--actions">
-                    <dropdown-primary [type]="'dropdown'" />
+                <td class="table-primary__cell table-primary__cell--actions">   
+                <dropdown-primary 
+                    [id]="item.id"
+                    [name]="item.name"
+                    />
                 </td>
             </tr>
         }
-        
-       
     </tbody>
 </table>
