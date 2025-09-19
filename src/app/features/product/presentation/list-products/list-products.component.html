@@ -20,23 +20,20 @@
   <article class="form-list-product__table-wrapper">
       <table-primary 
           class="form-list-product__table"
-          [data]="products()"
+          [data]="paginatedProducts()"
+          (ChangeDeletionConfirmation)="deleteProductById($event)"
         />
-    
   </article>
 
   <article class="form-list-product__footer">
     <span class="form-list-product__results">
-      @if (products$ | async; as products) {
-        {{ products.length }} Resultados
-      }
+      {{ allProducts().length }} Resultados
     </span>
-    @if (products$ | async; as products) {
-      <select-primary 
-        [data]="products"
-        (valueChanged)="paginatedData($event)"
-      />
-    }
+    
+    <select-primary 
+      [data]="allProducts()"
+      (valueChanged)="changePageLimit($event)"
+    />
   </article>
   
 </section>

@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, input, Output, ViewChild } from '@angular/core';
 import { ButtonPrimaryComponent } from "../button-primary/button-primary.component";
+import { ProductDeletionConfirmation } from '../../../features/product/domain/models/product.model';
 
 @Component({
   selector: 'modal-primary',
@@ -9,9 +10,10 @@ import { ButtonPrimaryComponent } from "../button-primary/button-primary.compone
 })
 export class ModalPrimaryComponent {
   @ViewChild('dialogRef') dialogRef!: ElementRef<HTMLDialogElement>;
-  @Output() dialoChange = new EventEmitter();
+  @Output() ChangeDeletionConfirmation = new EventEmitter<ProductDeletionConfirmation>();
 
   title = input.required<string>();
+  id = input.required<string>();
   label = input('Login');
 
   open(): void {
@@ -23,8 +25,7 @@ export class ModalPrimaryComponent {
   }
 
   confirm(): void {
+    this.ChangeDeletionConfirmation.emit({id: this.id(), message: this.title() });
     this.dialogRef.nativeElement?.close();
-    // Aquí puedes emitir un EventEmitter si lo deseas
-    this.dialoChange.emit(true);
   }
 }

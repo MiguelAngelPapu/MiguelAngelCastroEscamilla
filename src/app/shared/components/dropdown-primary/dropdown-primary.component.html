@@ -1,4 +1,9 @@
-<modal-primary [title]="title()" #dialog />
+<modal-primary 
+  #dialog 
+  [id]="id()"
+  [title]="title()"
+  (ChangeDeletionConfirmation)="ChangeDeletionConfirmation.emit($event)"
+  />
 
 <div
   class="dropdown dropdown--left">

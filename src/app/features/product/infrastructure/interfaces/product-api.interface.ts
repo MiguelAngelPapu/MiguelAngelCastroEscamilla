@@ -10,3 +10,7 @@ export interface ProductApiResult {
     date_release:  Date;
     date_revision: Date;
 }
+
+export interface ProductDeleteByIdRespose {
+    message: string;
+}
