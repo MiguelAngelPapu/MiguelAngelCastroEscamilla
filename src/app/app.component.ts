@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderPrimaryComponent } from "./interfaces/components/header-primary/header-primary.component";
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { HeaderPrimaryComponent } from "./shared/components/header-primary/header-primary.component";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderPrimaryComponent],
+  imports: [RouterModule, RouterOutlet, HeaderPrimaryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

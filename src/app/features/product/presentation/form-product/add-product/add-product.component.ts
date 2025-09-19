@@ -1,8 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputPrimaryComponent } from '../../../components/input-primary/input-primary.component';
-import { ButtonPrimaryComponent } from "../../../components/button-primary/button-primary.component";
-import { productIdUniqueValidator, releaseDateValidator, getFormErrorMessage } from '../../../../core/validators/validators';
+import { InputPrimaryComponent } from '../../../../../shared/components/input-primary/input-primary.component';
+import { ButtonPrimaryComponent } from '../../../../../shared/components/button-primary/button-primary.component';
+import { getFormErrorMessage, productIdUniqueValidator, releaseDateValidator } from '../../../../../shared/core/validators/validators';
+
 
 
 @Component({

@@ -1,0 +1,47 @@
+<table class="table-primary">
+    <thead class="table-primary__header">
+        <tr class="table-primary__row">
+            <th class="table-primary__header-cell">Logo</th>
+            <th class="table-primary__header-cell">Nombre del producto</th>
+            <th class="table-primary__header-cell">
+                <div class="table-primary__header-content">
+                    Descripción
+                    <img class="table-primary__info-icon" src="./information-circle.svg" alt="Information">
+                </div>
+            </th>
+            <th class="table-primary__header-cell">
+                <div class="table-primary__header-content">
+                    Fecha de liberación
+                    <img class="table-primary__info-icon" src="./information-circle.svg" alt="Information">
+                </div>
+            </th>
+            <th class="table-primary__header-cell">
+                <div class="table-primary__header-content">
+                    Fecha de restauración
+                    <img class="table-primary__info-icon" src="./information-circle.svg" alt="Information">
+                </div>
+            </th>
+            <th class="table-primary__header-cell"></th>
+        </tr>
+    </thead>
+    <tbody class="table-primary__body">
+        @for (item of data(); track $index) {
+            <tr class="table-primary__row">
+                <td class="table-primary__cell">
+                    <img class="table-primary__logo"
+                        [src]="item.logo"
+                        alt="visa">
+                </td>
+                <td class="table-primary__cell">{{ item.name }}</td>
+                <td class="table-primary__cell">{{ item.description }}</td>
+                <td class="table-primary__cell">{{ item.date_release | date:'dd/MM/yyyy' }}</td>
+                <td class="table-primary__cell">{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
+                <td class="table-primary__cell table-primary__cell--actions">
+                    <dropdown-primary [type]="'dropdown'" />
+                </td>
+            </tr>
+        }
+        
+       
+    </tbody>
+</table>

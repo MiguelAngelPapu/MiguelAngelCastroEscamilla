@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { ListProductsComponent } from './interfaces/pages/list-products/list-products.component';
-import { FormProductComponent } from './interfaces/pages/form-product/form-product.component';
-import { AddProductComponent } from './interfaces/pages/form-product/add-product/add-product.component';
+import { ListProductsComponent } from './features/product/presentation/list-products/list-products.component';
+import { FormProductComponent } from './features/product/presentation/form-product/form-product.component';
+import { AddProductComponent } from './features/product/presentation/form-product/add-product/add-product.component';
+
 
 export const routes: Routes = [
     {

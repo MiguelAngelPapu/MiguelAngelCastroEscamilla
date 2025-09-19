@@ -18,7 +18,13 @@
   </article>
   
   <article class="form-list-product__table-wrapper">
-    <table-primary class="form-list-product__table" />
+    @if (products$ | async; as products) {
+      <table-primary 
+          class="form-list-product__table"
+          [data]="products"
+        />
+    }
+    
   </article>
 
   <article class="form-list-product__footer">
