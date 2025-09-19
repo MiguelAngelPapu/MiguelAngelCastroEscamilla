@@ -1,1 +1,76 @@
-<p>add-product works!</p>
+<div class="add-product">
+  <h1 class="add-product__title">Formulario de Registro</h1>
+
+  <form 
+    id="productForm"
+    [formGroup]="form" 
+    class="add-product__form" 
+    (ngSubmit)="onSubmit()">
+
+    <div class="add-product__row">
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['id']"
+        [label]="'ID'"
+        [errorMessage]="getFormErrorMessage('id')"
+      />
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['name']"
+        [label]="'Nombre'"
+        [placeholder]="'Tarjeta Crédito'"
+        [errorMessage]="getFormErrorMessage('name')"
+      />
+    </div>
+
+    <div class="add-product__row">
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['description']"
+        [label]="'Descripción'"
+        [errorMessage]="getFormErrorMessage('description')"
+      />
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['logo']"
+        [label]="'Logo'"
+        [errorMessage]="getFormErrorMessage('logo')"
+      />
+    </div>
+
+    <div class="add-product__row">
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['date_relese']"
+        [type]="'date'"
+        [label]="'Fecha liberación'"
+        [errorMessage]="getFormErrorMessage('date_relese')"
+      />
+      <input-primary
+        class="add-product__field"
+        [control]="form.controls['date_revision']"
+        [type]="'date'"
+        [label]="'Fecha Revisión'"
+        [errorMessage]="getFormErrorMessage('date_revision')"
+      />
+    </div>
+  </form>
+
+  <div class="add-product__actions">
+    <button-primary 
+      class="add-product__button" 
+      [variant]="'cancel'"
+      [label]="'Reiniciar'" 
+      (click)="reset()"
+      />
+    <button-primary 
+      class="add-product__button"
+      [type]="'submit'"
+      [variant]="'confirm'"
+      [label]="'Confirmar'"
+      [form]="'productForm'"
+      [disabled]="!form.valid"
+      />
+  </div>
+
+</div>

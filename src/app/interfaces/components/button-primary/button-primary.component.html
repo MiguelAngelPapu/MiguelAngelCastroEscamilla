@@ -1,1 +1,21 @@
-<p>button-primary works!</p>
+@if (type() === 'submit') {
+    <input 
+        type="submit"
+      
+        class="button-primary"
+        [class.button-primary--confirm]="variant() === 'confirm'"
+        [class.button-primary--cancel]="variant() === 'cancel'"
+        [value]="label()"
+        [attr.form]="form()"
+        [attr.disabled]="disabled() ? true : null"
+    >
+}@else{
+    <button 
+        class="button-primary"
+        [class.button-primary--confirm]="variant() === 'confirm'"
+        [class.button-primary--cancel]="variant() === 'cancel'"
+        [attr.disabled]="disabled() ? true : null"
+    >
+        {{ label() }}
+    </button>
+}

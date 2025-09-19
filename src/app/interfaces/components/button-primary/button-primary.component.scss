@@ -1,0 +1,41 @@
+.button-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color, color 0.1s ease-in-out;
+
+  &--cancel {
+    background-color: var(--btn-secondary);
+    color: var(--text-900);
+
+    &:hover,
+    &:active {
+      filter: brightness(.9);
+    }
+  }
+
+  &--confirm {
+    background-color: var(--btn-primary);
+    color: var(--text-900);
+
+    &:hover,
+    &:active {
+      filter: brightness(1.1);
+    }
+  }
+
+  &:disabled{
+    opacity: .5; 
+    &:hover,
+    &:active {
+      filter: brightness(1);
+      cursor: not-allowed;
+    }
+  }
+}

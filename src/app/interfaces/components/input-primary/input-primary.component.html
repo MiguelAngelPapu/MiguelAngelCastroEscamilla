@@ -1,1 +1,15 @@
-<p>input-primary works!</p>
+<div class="input-field">
+  <label class="input-field__label">{{ label() }}</label>
+
+  <input
+    [type]="type()"
+    class='input-field__input'
+    [class.input-field__input--invalid]="!control().valid"
+    [placeholder]="placeholder()"
+    [formControl]="control()"
+  />
+
+  @if (errorMessage()) {
+    <small class="input-field__error">{{ errorMessage() }}</small>
+  }
+</div>

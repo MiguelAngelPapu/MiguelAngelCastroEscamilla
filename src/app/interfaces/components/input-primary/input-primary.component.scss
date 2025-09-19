@@ -1,0 +1,52 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-900);
+  }
+
+  &__input {
+    padding: 10px;
+    border: 1px solid var(--bg-primary-200);
+    height: 50px;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+
+    &:disabled {
+      background-color: var(--bg-primary-100);
+      border-color: var(--bg-primary-200);
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: var(--bg-primary-200);
+      }
+    }
+
+    &--invalid {
+      border-color: var(--error);
+
+      // Mantener el color en hover, focus y active
+      &:hover,
+      &:focus,
+      &:active {
+        border-color: var(--error);
+      }
+    }
+  }
+
+  &__error {
+    font-size: 12px;
+    color: var(--error);
+  }
+
+  &:has(.input-field__input:disabled) {
+    .input-field__label {
+      color: var(--bg-primary-200);
+      cursor: not-allowed;
+    }
+  }
+}
