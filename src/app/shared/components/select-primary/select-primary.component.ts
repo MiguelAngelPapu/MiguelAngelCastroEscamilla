@@ -1,5 +1,6 @@
 import { Component, computed, effect, EventEmitter, input, Output, signal } from '@angular/core';
 import { Product } from '../../../features/product/domain/models/product.model';
+import { calculatePaginationOptions } from '../../core/validators/validators';
 
 @Component({
   selector: 'select-primary',
@@ -14,37 +15,7 @@ export class SelectPrimaryComponent {
   isOpen = signal<boolean>(false);
 
   selectedValue = signal<number>(0);
-
-
-
-  limitOptions = computed(() => {
-    const length = this.data().length ?? 0;
-    const options = [];
-    let currentOptionValue = 0;
-    let i = 0;
-
-    // Mientras el valor de la opción sea menor que el total de items,
-    // sigue agregando opciones a la lista.
-    while (currentOptionValue < length) {
-      if (i === 0) {
-        // La primera opción es siempre 5.
-        currentOptionValue = 5;
-      } else {
-        // Las siguientes son 10, 20, 30...
-        currentOptionValue = i * 10;
-      }
-      options.push(currentOptionValue);
-      i++;
-    }
-
-    // Si no hay datos, asegúrate de que al menos la opción '5' exista.
-    if (options.length === 0) {
-      return [5];
-    }
-
-    return options;
-  });
-
+  
   constructor() {
     effect(() => {
       const options = this.limitOptions();
@@ -63,6 +34,9 @@ export class SelectPrimaryComponent {
       this.valueChanged.emit(this.selectedValue());
     });
   }
+
+  limitOptions = computed(() => calculatePaginationOptions(this.data()));
+
 
   toggleMenu(): void {
     this.isOpen.set(!this.isOpen());

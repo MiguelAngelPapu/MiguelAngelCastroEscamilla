@@ -3,10 +3,9 @@
   <article class="form-list-product__actions">
     <input-primary
       class="form-list-product__search"
-      [control]="form.controls['search']"
+      [control]="searchControl"
       [label]="''"
       [placeholder]="'Buscar...'"
-      [errorMessage]="getFormErrorMessage(form.controls['search'])"
     />
     <button-primary 
         class="form-list-product__add-button"
@@ -20,19 +19,19 @@
   <article class="form-list-product__table-wrapper">
       <table-primary 
           class="form-list-product__table"
-          [data]="paginatedProducts()"
-          (ChangeDeletionConfirmation)="deleteProductById($event)"
-        />
+          [data]="facade.paginatedProducts()"
+          (ChangeDeletionConfirmation)="deleteProduct($event.id)"
+      />
   </article>
 
   <article class="form-list-product__footer">
     <span class="form-list-product__results">
-      {{ allProducts().length }} Resultados
+      {{ facade.filteredProducts().length }} Resultados
     </span>
     
     <select-primary 
-      [data]="allProducts()"
-      (valueChanged)="changePageLimit($event)"
+      [data]="facade.filteredProducts()"
+      (valueChanged)="changeLimit($event)"
     />
   </article>
   
