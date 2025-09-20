@@ -1,9 +1,8 @@
 // Response getAll
-export interface ProductApiResponse {
-    data: ProductApiResult[];
+export interface GetProductsResponse {
+    data: ProductsResponseResult[];
 }
-
-export interface ProductApiResult {
+export interface ProductsResponseResult {
     id:            string;
     name:          string;
     description:   string;
@@ -12,18 +11,18 @@ export interface ProductApiResult {
     date_revision: Date;
 }
 
+
 // Response deleteById
 export interface ProductDeleteByIdRespose {
     message: string;
 }
 
 // Response add
-export interface ProductSaveRespose {
+export interface CreateProductsResponse {
     message: string;
-    data:    ProductApiMessage;
+    data:    ProductResponseDto;
 }
-
-export interface ProductApiMessage {
+export interface ProductResponseDto {
     id:            string;
     name:          string;
     description:   string;
@@ -33,12 +32,12 @@ export interface ProductApiMessage {
 }
 
 // Response update
-export interface ProductUpdateByIdRespose {
+export interface UpdateRespose {
     message: string;
-    data:    ProductApiMessage;
+    data:    ProductUpdateResponseDto;
 }
 
-export interface ProductApiMessage {
+export interface ProductUpdateResponseDto {
     name:          string;
     description:   string;
     logo:          string;

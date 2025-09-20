@@ -1,14 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { ProductRepository } from '../domain/repositories/product.repository';
 import { Observable } from 'rxjs';
-import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from '../domain/models/product.model';
+import { CreateProductDto, DeleteProductDto, Product, UpdateProductDto } from '../domain/models/product.model';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    // Inyectamos la ABSTRACCIÓN, no la implementación.
     private productRepository = inject(ProductRepository);
 
     // Este es el "Caso de Uso" para obtener todos los productos.
@@ -22,7 +21,7 @@ export class ProductService {
      * @param id El ID del producto a eliminar.
      * @returns Un Observable<void> que se completa si la eliminación es exitosa.
      */
-    deleteProduct(id: string): Observable<ProductDeletionConfirmation> {
+    deleteProduct(id: string): Observable<DeleteProductDto> {
         return this.productRepository.deleteById(id);
     }
 
@@ -32,7 +31,7 @@ export class ProductService {
      * @param product El producto a agregar
      * @returns Un Observable<Product> con el producto recién creado
      */
-    addProduct(product: MyProduct): Observable<MyProduct> {
+    addProduct(product: CreateProductDto): Observable<CreateProductDto> {
         return this.productRepository.add(product);
     }
 
@@ -48,9 +47,9 @@ export class ProductService {
      * Delega la actualización al repositorio.
      * @param id El ID del producto a actualizar
      * @param product Los nuevos datos del producto
-     * @returns Un Observable<MyProduct> con el producto actualizado
+     * @returns Un Observable<CreateProductDto> con el producto actualizado
      */
-    updateProduct(id: string, product: MyProduct): Observable<ProductUpdate> {
+    updateProduct(id: string, product: CreateProductDto): Observable<UpdateProductDto> {
         return this.productRepository.update(id, product);
     }
     

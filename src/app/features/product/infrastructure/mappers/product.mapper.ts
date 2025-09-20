@@ -1,8 +1,8 @@
-import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from "../../domain/models/product.model";
-import { ProductApiResponse, ProductApiResult, ProductDeleteByIdRespose, ProductSaveRespose, ProductUpdateByIdRespose } from "../interfaces/product-api.interface";
+import { CreateProductDto, DeleteProductDto, Product, UpdateProductDto } from "../../domain/models/product.model";
+import { GetProductsResponse, ProductsResponseResult, ProductDeleteByIdRespose, CreateProductsResponse, UpdateRespose } from "../interfaces/product-api.interface";
 
-// Mapea un solo producto desde 'ProductApiResult' al modelo 'Product'
-const toProduct = (response: ProductApiResult): Product => {
+// Mapea un solo producto desde 'GetProductsResponse' al modelo 'Product'
+const toProduct = (response: ProductsResponseResult): Product => {
   return {
     id: response.id,
     name: response.name,
@@ -13,13 +13,12 @@ const toProduct = (response: ProductApiResult): Product => {
   };
 };
 
-
-export const toProducts = (response: ProductApiResponse): Product[] => {
+export const toProducts = (response: GetProductsResponse): Product[] => {
   const results = response.data;
   return results.map(result => toProduct(result));
 };
 
-export const toDeleteMessage = (id: string, response: ProductDeleteByIdRespose): ProductDeletionConfirmation => {
+export const toDeleteMessage = (id: string, response: ProductDeleteByIdRespose): DeleteProductDto => {
   return {
     id,
     message: response.message
@@ -27,7 +26,7 @@ export const toDeleteMessage = (id: string, response: ProductDeleteByIdRespose):
 };
 
 
-export const toProductAdd = ({ data, message }: ProductSaveRespose): MyProduct => {
+export const toProductAdd = ({ data, message }: CreateProductsResponse): CreateProductDto => {
   return {
     id: data.id,
     name: data.name,
@@ -40,7 +39,7 @@ export const toProductAdd = ({ data, message }: ProductSaveRespose): MyProduct =
 };
 
 
-export const toProductUpdate = ({ data, message }: ProductUpdateByIdRespose): ProductUpdate => {
+export const toUpdateProduct = ({ data, message }: UpdateRespose): UpdateProductDto => {
   return {
     name: data.name,
     description: data.description,

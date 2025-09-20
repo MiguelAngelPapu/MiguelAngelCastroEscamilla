@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, input, Output, ViewChild } from '@angular/core';
 import { ButtonPrimaryComponent } from "../button-primary/button-primary.component";
-import { ProductDeletionConfirmation } from '../../../features/product/domain/models/product.model';
+import { DeleteProductDto } from '../../../features/product/domain/models/product.model';
 
 @Component({
   selector: 'modal-primary',
@@ -10,7 +10,7 @@ import { ProductDeletionConfirmation } from '../../../features/product/domain/mo
 })
 export class ModalPrimaryComponent {
   @ViewChild('dialogRef') dialogRef!: ElementRef<HTMLDialogElement>;
-  @Output() ChangeDeletionConfirmation = new EventEmitter<ProductDeletionConfirmation>();
+  @Output() ChangeDeletionConfirmation = new EventEmitter<DeleteProductDto>();
 
   title = input.required<string>();
   id = input.required<string>();

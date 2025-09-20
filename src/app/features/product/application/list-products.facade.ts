@@ -12,15 +12,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class ListProductsFacade {
     private productService = inject(ProductService);
 
-    // --- Estado Interno Simplificado ---
     allProducts = signal<Product[]>([]);
     limit = signal<number>(5);
-    private searchTerm = signal<string>(''); // El término de búsqueda ahora es un estado interno
+    searchTerm = signal<string>(''); // El término de búsqueda ahora es un estado interno
 
-    // --- Signals Computadas para la Vista ---
     filteredProducts = computed(() => {
         const all = this.allProducts();
         const query = this.searchTerm();
+        console.log(all)
+         console.log(query)
         if (!query || query.length < 3) {
             return all; // Si no hay búsqueda o es corta, devuelve todos
         }
@@ -30,10 +30,11 @@ export class ListProductsFacade {
     // La única signal que el componente necesita para la tabla
     paginatedProducts = computed(() => {
         const products = this.filteredProducts();
+        
         return products.slice(0, this.limit());
     });
 
-    // --- Métodos de la API Pública del Facade ---
+ 
 
     fetchProducts(): void {
         this.productService.getAllProducts().subscribe(products => this.allProducts.set(products));

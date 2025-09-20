@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { TablePrimaryComponent } from '../../../../shared/components/table-primary/table-primary.component';
@@ -15,21 +15,25 @@ import { ListProductsFacade } from '../../application/list-products.facade';
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.scss'
 })
-export class ListProductsComponent implements OnInit {
+export class ListProductsComponent implements OnInit, OnDestroy {
   facade = inject(ListProductsFacade);
   searchControl = new FormControl('');
   private destroyRef = inject(DestroyRef); // Inyecta el DestroyRef
 
+
+
   constructor() {
-    // ✅ Conecta el control del componente con la lógica del Facade
-    this.facade.connectSearch(this.searchControl.valueChanges, this.destroyRef);
+    this.facade.fetchProducts();    
   }
-
-  // Se elimina el método setupSearchSubscription() de aquí.
-
   ngOnInit(): void {
-    this.facade.fetchProducts();
+    this.facade.connectSearch(this.searchControl.valueChanges, this.destroyRef);   
   }
+
+  ngOnDestroy(): void {
+    // Borramos los datos en guardados en el facabe
+   this.facade.searchTerm.set("");
+  }
+
 
   // El resto de los métodos no cambian, siguen siendo simples llamadas al Facade.
   deleteProduct(id: string) {

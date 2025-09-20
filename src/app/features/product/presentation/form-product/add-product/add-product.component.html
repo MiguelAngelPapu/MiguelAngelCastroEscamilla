@@ -1,57 +1,62 @@
 <div class="add-product">
   <h1 class="add-product__title">Formulario de Registro</h1>
+  @if (successMessage()) {
+    <div class="add-product--message">
+      {{ successMessage() }}
+    </div>
+  }
 
   <form 
     id="productForm"
-    [formGroup]="form" 
+    [formGroup]="facade.form" 
     class="add-product__form" 
     (ngSubmit)="onSubmit()">
 
     <div class="add-product__row">
       <input-primary
         class="add-product__field"
-        [control]="form.controls['id']"
+        [control]="facade.form.controls['id']"
         [label]="'ID'"
-        [errorMessage]="getFormErrorMessage(form.controls['id'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['id'])"
       />
       <input-primary
         class="add-product__field"
-        [control]="form.controls['name']"
+        [control]="facade.form.controls['name']"
         [label]="'Nombre'"
         [placeholder]="'Tarjeta Crédito'"
-        [errorMessage]="getFormErrorMessage(form.controls['name'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['name'])"
       />
     </div>
 
     <div class="add-product__row">
       <input-primary
         class="add-product__field"
-        [control]="form.controls['description']"
+        [control]="facade.form.controls['description']"
         [label]="'Descripción'"
-        [errorMessage]="getFormErrorMessage(form.controls['description'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['description'])"
       />
       <input-primary
         class="add-product__field"
-        [control]="form.controls['logo']"
+        [control]="facade.form.controls['logo']"
         [label]="'Logo'"
-        [errorMessage]="getFormErrorMessage(form.controls['logo'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['logo'])"
       />
     </div>
 
     <div class="add-product__row">
       <input-primary
         class="add-product__field"
-        [control]="form.controls['date_release']"
+        [control]="facade.form.controls['date_release']"
         [type]="'date'"
         [label]="'Fecha liberación'"
-        [errorMessage]="getFormErrorMessage(form.controls['date_release'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['date_release'])"
       />
       <input-primary
         class="add-product__field"
-        [control]="form.controls['date_revision']"
+        [control]="facade.form.controls['date_revision']"
         [type]="'date'"
         [label]="'Fecha Revisión'"
-        [errorMessage]="getFormErrorMessage(form.controls['date_revision'])"
+        [errorMessage]="getFormErrorMessage(facade.form.controls['date_revision'])"
       />
     </div>
   </form>
@@ -61,7 +66,7 @@
       class="add-product__button" 
       [variant]="'cancel'"
       [label]="'Reiniciar'" 
-      (click)="reset()"
+      (click)="facade.reset()"
       />
     <button-primary 
       class="add-product__button"
@@ -69,7 +74,7 @@
       [variant]="'confirm'"
       [label]="'Confirmar'"
       [form]="'productForm'"
-      [disabled]="!form.valid"
+      [disabled]="!facade.form.valid"
       />
   </div>
 

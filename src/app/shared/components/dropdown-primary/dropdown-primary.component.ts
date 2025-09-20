@@ -1,5 +1,5 @@
 import { Component, EventEmitter, input, InputSignal, Output, signal, ViewChild } from '@angular/core';
-import { Product, ProductDeletionConfirmation } from '../../../features/product/domain/models/product.model';
+import { Product, DeleteProductDto } from '../../../features/product/domain/models/product.model';
 import { ModalPrimaryComponent } from "../modal-primary/modal-primary.component";
 import { RouterModule } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class DropdownPrimaryComponent {
   @ViewChild('dialog') dialogComponent!: ModalPrimaryComponent;
-  @Output() ChangeDeletionConfirmation = new EventEmitter<ProductDeletionConfirmation>()
+  @Output() ChangeDeletionConfirmation = new EventEmitter<DeleteProductDto>()
 
   id = input.required<string>();
   name = input<string>();

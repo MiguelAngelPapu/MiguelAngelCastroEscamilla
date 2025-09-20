@@ -8,7 +8,7 @@ export interface Product {
   message?:string;
 }
 
-export interface MyProduct {
+export interface CreateProductDto {
   id: string;
   name: string;
   description: string;
@@ -19,7 +19,7 @@ export interface MyProduct {
   
 }
 
-export interface ProductUpdate {
+export interface UpdateProductDto {
   name: string;
   description: string;
   logo: string;
@@ -28,7 +28,7 @@ export interface ProductUpdate {
   message?: string;
 }
 
-export interface ProductDeletionConfirmation{
+export interface DeleteProductDto{
   id: string;
   message: string;
 }

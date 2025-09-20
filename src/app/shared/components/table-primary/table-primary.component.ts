@@ -1,6 +1,6 @@
 import { Component, EventEmitter, input, Output } from '@angular/core';
 import { DropdownPrimaryComponent } from "../dropdown-primary/dropdown-primary.component";
-import { Product, ProductDeletionConfirmation } from '../../../features/product/domain/models/product.model';
+import { Product, DeleteProductDto } from '../../../features/product/domain/models/product.model';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -10,6 +10,6 @@ import { DatePipe } from '@angular/common';
   styleUrl: './table-primary.component.scss'
 })
 export class TablePrimaryComponent {
-  @Output() ChangeDeletionConfirmation = new EventEmitter<ProductDeletionConfirmation>()
+  @Output() ChangeDeletionConfirmation = new EventEmitter<DeleteProductDto>()
   data = input.required<Product[]>();
 }

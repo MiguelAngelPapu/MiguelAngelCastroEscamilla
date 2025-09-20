@@ -1,12 +1,12 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductRepository } from '../domain/repositories/product.repository';
 
-import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from '../domain/models/product.model';
+import { CreateProductDto, DeleteProductDto, Product, UpdateProductDto} from '../domain/models/product.model';
 import { environment } from '../../../../environments/environment';
 import { map, Observable } from 'rxjs';
-import { ProductApiResponse, ProductDeleteByIdRespose, ProductSaveRespose } from './interfaces/product-api.interface';
-import { toProducts, toDeleteMessage, toProductAdd, toProductUpdate } from './mappers/product.mapper';
+import { GetProductsResponse, ProductDeleteByIdRespose, CreateProductsResponse } from './interfaces/product-api.interface';
+import { toProducts, toDeleteMessage, toProductAdd, toUpdateProduct } from './mappers/product.mapper';
 
 
 @Injectable() // No necesita providedIn: 'root' porque lo proveeremos manualmente
@@ -15,14 +15,14 @@ export class ProductApiService extends ProductRepository {
     private apiUrl = environment.apiUrl;
 
     override getAll(): Observable<Product[]> {
-        return this.http.get<ProductApiResponse>(`${this.apiUrl}/bp/products`)
+        return this.http.get<GetProductsResponse>(`${this.apiUrl}/bp/products`)
             .pipe(
                 // Pasa la respuesta completa al mapper, que sabrá cómo manejarla
                 map(response => toProducts(response))
             );
     }
 
-    override deleteById(id: string): Observable<ProductDeletionConfirmation> {
+    override deleteById(id: string): Observable<DeleteProductDto> {
         return this.http.delete<ProductDeleteByIdRespose>(`${this.apiUrl}/bp/products/${id}`)
             .pipe(
                 map(response => toDeleteMessage(id, response))
@@ -34,7 +34,7 @@ export class ProductApiService extends ProductRepository {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<ProductSaveRespose>(`${this.apiUrl}/bp/products`, product, { headers })
+        return this.http.post<CreateProductsResponse>(`${this.apiUrl}/bp/products`, product, { headers })
             .pipe(
                 map(response => toProductAdd(response))
             );
@@ -44,13 +44,13 @@ export class ProductApiService extends ProductRepository {
         return this.http.get<boolean>(`${this.apiUrl}/bp/products/verification/${id}`);
     }
 
-    override update(id: string, product: MyProduct): Observable<ProductUpdate> {
+    override update(id: string, product: CreateProductDto): Observable<UpdateProductDto> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.put<ProductSaveRespose>(`${this.apiUrl}/bp/products/${id}`, product, { headers })
+        return this.http.put<CreateProductsResponse>(`${this.apiUrl}/bp/products/${id}`, product, { headers })
             .pipe(
-                map(response => toProductUpdate(response))
+                map(response => toUpdateProduct(response))
             );
     }
 }

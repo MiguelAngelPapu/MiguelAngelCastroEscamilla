@@ -17,11 +17,13 @@
   </article>
   
   <article class="form-list-product__table-wrapper">
+    @if (facade.paginatedProducts().length > 0) {
       <table-primary 
           class="form-list-product__table"
           [data]="facade.paginatedProducts()"
-          (ChangeDeletionConfirmation)="deleteProduct($event.id)"
-      />
+          (ChangeDeletionConfirmation)="deleteProduct($event.id)"/>
+    }
+     
   </article>
 
   <article class="form-list-product__footer">

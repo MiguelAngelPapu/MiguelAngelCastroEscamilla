@@ -31,7 +31,7 @@ export function releaseDateValidator(control: AbstractControl): ValidationErrors
   return selectedDate >= today ? null : { invalidReleaseDate: true };
 }
 
-// Mensajes de error
+// Mensajes de error de los inputs
 export function getFormErrorMessage(control: FormControl): string {
   if (!control?.errors) return '';
 
@@ -75,4 +75,12 @@ export function calculatePaginationOptions(product: Product[]): number[] {
     return [5];
   }
   return options;
+}
+
+// Suma 1 año a la fecha que se pase
+export function nextRevisionDate(release: string | null | undefined): Date | any {
+  if (!release) return '';
+  const revision = new Date(release);
+  revision.setFullYear(revision.getFullYear() + 1);
+  return revision.toISOString().split('T')[0];
 }
