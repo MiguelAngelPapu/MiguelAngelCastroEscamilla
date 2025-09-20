@@ -8,10 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../application/product.service';
 import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
 import { UpdateProductFacade } from '../../../application/update-product.facade';
+import { ToastPrimaryComponent } from "../../../../../shared/components/toast-primary/toast-primary.component";
 
 @Component({
   selector: 'app-update-product',
-  imports: [ReactiveFormsModule, InputPrimaryComponent, ButtonPrimaryComponent],
+  imports: [ReactiveFormsModule, InputPrimaryComponent, ButtonPrimaryComponent, ToastPrimaryComponent],
   templateUrl: './update-product.component.html',
   styleUrl: './update-product.component.scss'
 })
@@ -19,8 +20,8 @@ export class UpdateProductComponent implements OnInit {
   facade = inject(UpdateProductFacade);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private productService = inject(ProductService);
   successMessage = signal<string | undefined>(undefined);
+  isSuccess = signal<boolean>(true);
   private destroy$ = new Subject<void>();
 
 
@@ -57,14 +58,19 @@ export class UpdateProductComponent implements OnInit {
   onSubmit() {
     this.facade.update().then(response => {
 
-      this.successMessage.set(response?.message);
+      if (!response) return;
+      if ('status' in response) this.isSuccess.set(false);
+      this.successMessage.set(response?.message)
 
-      timer(2500)
+
+
+      timer(3500)
         .pipe(
           takeUntil(this.destroy$)
         )
         .subscribe(() => {
           this.successMessage.set('');
+          this.isSuccess.set(true);
         });
 
     })

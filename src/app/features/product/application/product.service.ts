@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ProductRepository } from '../domain/repositories/product.repository';
 import { Observable } from 'rxjs';
-import { CreateProductDto, DeleteProductDto, Product, UpdateProductDto } from '../domain/models/product.model';
+import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../domain/models/product.model';
 
 
 @Injectable({
@@ -31,7 +31,7 @@ export class ProductService {
      * @param product El producto a agregar
      * @returns Un Observable<Product> con el producto recién creado
      */
-    addProduct(product: CreateProductDto): Observable<CreateProductDto> {
+    addProduct(product: CreateProductDto): Observable<CreateProductDto | MessageApi | undefined> {
         return this.productRepository.add(product);
     }
 
@@ -49,7 +49,7 @@ export class ProductService {
      * @param product Los nuevos datos del producto
      * @returns Un Observable<CreateProductDto> con el producto actualizado
      */
-    updateProduct(id: string, product: CreateProductDto): Observable<UpdateProductDto> {
+    updateProduct(id: string, product: CreateProductDto): Observable<UpdateProductDto | MessageApi> {
         return this.productRepository.update(id, product);
     }
     

@@ -1,9 +1,10 @@
 <div class="add-product">
   <h1 class="add-product__title">Formulario de Registro</h1>
   @if (successMessage()) {
-    <div class="add-product--message">
-      {{ successMessage() }}
-    </div>
+    <toast-primary 
+      [text]="successMessage()!"
+      [isSuccess]="isSuccess()"
+    />
   }
 
   <form 

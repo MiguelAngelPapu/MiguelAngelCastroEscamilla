@@ -2,9 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductRepository } from '../domain/repositories/product.repository';
 
-import { CreateProductDto, DeleteProductDto, Product, UpdateProductDto} from '../domain/models/product.model';
+import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../domain/models/product.model';
 import { environment } from '../../../../environments/environment';
-import { map, Observable } from 'rxjs';
+import { catchError, delay, map, Observable, of } from 'rxjs';
 import { GetProductsResponse, ProductDeleteByIdRespose, CreateProductsResponse } from './interfaces/product-api.interface';
 import { toProducts, toDeleteMessage, toProductAdd, toUpdateProduct } from './mappers/product.mapper';
 
@@ -17,8 +17,10 @@ export class ProductApiService extends ProductRepository {
     override getAll(): Observable<Product[]> {
         return this.http.get<GetProductsResponse>(`${this.apiUrl}/bp/products`)
             .pipe(
+                delay(200),
                 // Pasa la respuesta completa al mapper, que sabrá cómo manejarla
-                map(response => toProducts(response))
+                map(response => toProducts(response)),
+
             );
     }
 
@@ -30,27 +32,48 @@ export class ProductApiService extends ProductRepository {
     }
 
 
-    override add(product: any): Observable<any> {
+    override add(product: any): Observable<CreateProductDto | MessageApi> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
+
         return this.http.post<CreateProductsResponse>(`${this.apiUrl}/bp/products`, product, { headers })
             .pipe(
-                map(response => toProductAdd(response))
+                map(response => toProductAdd(response)),
+                catchError(error => {
+                    const response: MessageApi = {
+                        status: error.status,
+                        message: error.error?.message || error.statusText
+                    };
+
+                    return of(response);
+                })
             );
     }
 
     override verificationProduct(id: string): Observable<boolean> {
-        return this.http.get<boolean>(`${this.apiUrl}/bp/products/verification/${id}`);
+        return this.http.get<boolean>(`${this.apiUrl}/bp/products/verification/${id}`).pipe(
+            catchError(error => {
+                return of(false);
+            })
+        );
     }
 
-    override update(id: string, product: CreateProductDto): Observable<UpdateProductDto> {
+    override update(id: string, product: CreateProductDto): Observable<UpdateProductDto | MessageApi> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
         return this.http.put<CreateProductsResponse>(`${this.apiUrl}/bp/products/${id}`, product, { headers })
             .pipe(
-                map(response => toUpdateProduct(response))
+                map(response => toUpdateProduct(response)),
+                catchError(error => {
+                    const response: MessageApi = {
+                        status: error.status,
+                        message: error.error?.message || error.statusText
+                    };
+
+                    return of(response);
+                })
             );
     }
 }

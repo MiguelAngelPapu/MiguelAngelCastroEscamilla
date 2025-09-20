@@ -34,20 +34,20 @@
     }
 
     &--invalid {
-      border-color: var(--error);
+      border-color: var(--color-error-text);
 
       // Mantener el color en hover, focus y active
       &:hover,
       &:focus,
       &:active {
-        border-color: var(--error);
+        border-color: var(--color-error-text);
       }
     }
   }
 
   &__error {
     font-size: 12px;
-    color: var(--error);
+    color: var(--color-error-text);
   }
 
   &:has(.input-field__input:disabled) {

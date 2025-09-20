@@ -16,7 +16,6 @@ export interface CreateProductDto {
   date_release: string;
   date_revision: string;
   message?:string;
-  
 }
 
 export interface UpdateProductDto {
@@ -30,5 +29,10 @@ export interface UpdateProductDto {
 
 export interface DeleteProductDto{
   id: string;
+  message?: string;
+}
+
+export interface MessageApi{
+  status: number;
   message: string;
 }

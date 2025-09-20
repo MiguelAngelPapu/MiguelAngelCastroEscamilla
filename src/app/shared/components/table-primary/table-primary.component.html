@@ -25,24 +25,87 @@
         </tr>
     </thead>
     <tbody class="table-primary__body">
-        @for (item of data(); track $index) {
+        @if(data().length){
+            @for (item of data(); track $index) {
+                <tr class="table-primary__row">
+                    <td class="table-primary__cell">
+                        <img class="table-primary__logo"
+                            [src]="item.logo"
+                            alt="visa">
+                    </td>
+                    <td class="table-primary__cell">{{ item.name }}</td>
+                    <td class="table-primary__cell">{{ item.description }}</td>
+                    <td class="table-primary__cell">{{ item.date_releas | date:'dd/MM/yyyy' }}</td>
+                    <td class="table-primary__cell">{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
+                    <td class="table-primary__cell table-primary__cell--actions">   
+                    <dropdown-primary 
+                        [id]="item.id"
+                        [name]="item.name"
+                        (ChangeDeletionConfirmation)="ChangeDeletionConfirmation.emit($event)"
+                        />
+                    </td>
+                </tr>
+            }
+        }@else {
             <tr class="table-primary__row">
-                <td class="table-primary__cell">
-                    <img class="table-primary__logo"
-                        [src]="item.logo"
-                        alt="visa">
-                </td>
-                <td class="table-primary__cell">{{ item.name }}</td>
-                <td class="table-primary__cell">{{ item.description }}</td>
-                <td class="table-primary__cell">{{ item.date_releas | date:'dd/MM/yyyy' }}</td>
-                <td class="table-primary__cell">{{ item.date_revision | date:'dd/MM/yyyy' }}</td>
-                <td class="table-primary__cell table-primary__cell--actions">   
-                <dropdown-primary 
-                    [id]="item.id"
-                    [name]="item.name"
-                    (ChangeDeletionConfirmation)="ChangeDeletionConfirmation.emit($event)"
-                    />
-                </td>
+                    <td class="table-primary__cell--loading">
+                        <div class="circle shimmer"> </div>
+                    </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading">   
+                        <div class="squared shimmer"> </div>
+                    </td>
+            </tr>
+             <tr class="table-primary__row">
+                    <td class="table-primary__cell--loading">
+                        <div class="circle shimmer"> </div>
+                    </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading">   
+                        <div class="squared shimmer"> </div>
+                    </td>
+            </tr>
+             <tr class="table-primary__row">
+                    <td class="table-primary__cell--loading">
+                        <div class="circle shimmer"> </div>
+                    </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading">   
+                        <div class="squared shimmer"> </div>
+                    </td>
+            </tr>
+             <tr class="table-primary__row">
+                    <td class="table-primary__cell--loading">
+                        <div class="circle shimmer"> </div>
+                    </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading">   
+                        <div class="squared shimmer"> </div>
+                    </td>
+            </tr>
+             <tr class="table-primary__row">
+                    <td class="table-primary__cell--loading">
+                        <div class="circle shimmer"> </div>
+                    </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading"> <div class="content shimmer"></div> </td>
+                    <td class="table-primary__cell--loading">   
+                        <div class="squared shimmer"> </div>
+                    </td>
             </tr>
         }
     </tbody>

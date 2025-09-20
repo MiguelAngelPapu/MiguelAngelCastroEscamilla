@@ -1,10 +1,11 @@
 <div class="update-product">
   <h1 class="update-product__title">Edición de Registro</h1>
     @if (successMessage()) {
-      <div class="update-product--message">
-        {{ successMessage() }}
-      </div>
-    }
+      <toast-primary 
+        [text]="successMessage()!"
+        [isSuccess]="isSuccess()"
+      />
+    } 
   <form 
     id="productForm"
     [formGroup]="facade.form" 

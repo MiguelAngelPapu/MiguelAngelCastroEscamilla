@@ -8,7 +8,6 @@ import { ButtonPrimaryComponent } from '../../../../shared/components/button-pri
 import { SelectPrimaryComponent } from "../../../../shared/components/select-primary/select-primary.component";
 import { ListProductsFacade } from '../../application/list-products.facade';
 
-
 @Component({
   selector: 'app-list-products',
   imports: [RouterModule, TablePrimaryComponent, InputPrimaryComponent, ButtonPrimaryComponent, SelectPrimaryComponent],

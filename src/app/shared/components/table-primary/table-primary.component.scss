@@ -20,16 +20,28 @@
     padding: 25px 0px;
     text-align: left;
     color: var(--text-900);
+
     &:first-child {
       text-align: center;
     }
   }
 
   &__cell {
-    padding: 12px 0px;
+    padding: 12px 5px;
     color: var(--bg-primary-200);
     vertical-align: middle;
 
+   
+    &--loading{
+      padding: 12px 5px;
+      text-align: center;
+
+      &:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
     &:first-child {
       text-align: center;
     }
@@ -80,5 +92,47 @@
       justify-content: flex-start;
     }
 
+  }
+}
+
+.circle {
+  width: 80px;
+  height: 45px;
+  border-radius: 4px;
+  aspect-ratio: 1;
+  background: #EDEDED;
+  animation-delay: 1s;
+}
+
+.content {
+  background: #EDEDED;
+  border-radius: 4px;
+  height: 17px;
+  width: 100%;
+
+}
+.squared{
+  background: #EDEDED;
+  border-radius: 4px;
+  height: 30px;
+  width: 100%;
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+      #EDEDED 30%,
+      #DCDCDC 50%,
+      #EDEDED 70%);
+  background-size: 400%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0 0;
   }
 }
