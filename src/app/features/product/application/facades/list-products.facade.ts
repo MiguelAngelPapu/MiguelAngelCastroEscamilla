@@ -1,8 +1,8 @@
 import { computed, DestroyRef, inject, Injectable, signal } from '@angular/core';
-import { Product } from '../domain/models/product.model';
-import { ProductService } from './product.service';
 import { debounceTime, distinctUntilChanged, Observable, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ProductService } from '../services/product.service';
+import { Product } from '../../domain/models/product.model';
 
 
 @Injectable({

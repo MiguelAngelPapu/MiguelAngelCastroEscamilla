@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { ProductRepository } from '../domain/repositories/product.repository';
+import { ProductRepository } from '../../domain/repositories/product.repository';
 import { Observable } from 'rxjs';
-import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../domain/models/product.model';
+import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../../domain/models/product.model';
 
 
 @Injectable({

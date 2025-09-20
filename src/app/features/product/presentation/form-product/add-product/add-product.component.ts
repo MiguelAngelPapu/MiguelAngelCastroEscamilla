@@ -3,7 +3,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputPrimaryComponent } from '../../../../../shared/components/input-primary/input-primary.component';
 import { ButtonPrimaryComponent } from '../../../../../shared/components/button-primary/button-primary.component';
 import { getFormErrorMessage } from '../../../../../shared/core/validators/validators';
-import { AddProductFacade } from '../../../application/add-product.facade';
+import { AddProductFacade } from '../../../application/facades/add-product.facade';
 import { Subject, takeUntil, timer } from 'rxjs';
 import { ToastPrimaryComponent } from "../../../../../shared/components/toast-primary/toast-primary.component";
 

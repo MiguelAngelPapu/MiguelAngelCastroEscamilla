@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductRepository } from '../domain/repositories/product.repository';
+import { ProductRepository } from '../../domain/repositories/product.repository';
 
-import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../domain/models/product.model';
-import { environment } from '../../../../environments/environment';
+import { CreateProductDto, DeleteProductDto, MessageApi, Product, UpdateProductDto } from '../../domain/models/product.model';
+import { environment } from '../../../../../environments/environment';
 import { catchError, delay, map, Observable, of } from 'rxjs';
-import { GetProductsResponse, ProductDeleteByIdRespose, CreateProductsResponse } from './interfaces/product-api.interface';
-import { toProducts, toDeleteMessage, toProductAdd, toUpdateProduct } from './mappers/product.mapper';
+import { GetProductsResponse, ProductDeleteByIdRespose, CreateProductsResponse } from '../../infrastructure/interfaces/product-api.interface';
+import { toProducts, toDeleteMessage, toProductAdd, toUpdateProduct } from '../../infrastructure/mappers/product.mapper';
 
 
 @Injectable() // No necesita providedIn: 'root' porque lo proveeremos manualmente

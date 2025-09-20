@@ -1,8 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { ProductService } from './product.service';
-import { CreateProductDto } from '../domain/models/product.model';
+import { ProductService } from '../services/product.service';
+import { CreateProductDto } from '../../domain/models/product.model';
 import { FormBuilder, Validators } from '@angular/forms';
-import { nextRevisionDate, productIdUniqueValidator, releaseDateValidator } from '../../../shared/core/validators/validators';
+import { nextRevisionDate, productIdUniqueValidator, releaseDateValidator } from '../../../../shared/core/validators/validators';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({

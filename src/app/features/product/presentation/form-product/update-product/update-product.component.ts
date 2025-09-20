@@ -5,10 +5,9 @@ import { ButtonPrimaryComponent } from "../../../../../shared/components/button-
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { getFormErrorMessage } from '../../../../../shared/core/validators/validators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../../application/product.service';
-import { firstValueFrom, Subject, takeUntil, timer } from 'rxjs';
-import { UpdateProductFacade } from '../../../application/update-product.facade';
+import { Subject, takeUntil, timer } from 'rxjs';
 import { ToastPrimaryComponent } from "../../../../../shared/components/toast-primary/toast-primary.component";
+import { UpdateProductFacade } from '../../../application/facades/update-product.facade';
 
 @Component({
   selector: 'app-update-product',
@@ -23,7 +22,6 @@ export class UpdateProductComponent implements OnInit {
   successMessage = signal<string | undefined>(undefined);
   isSuccess = signal<boolean>(true);
   private destroy$ = new Subject<void>();
-
 
 
   ngOnInit(): void {

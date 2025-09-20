@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ProductRepository } from './features/product/domain/repositories/product.repository';
-import { ProductApiService } from './features/product/infrastructure/product-api.service';
+import { ProductApiService } from './features/product/application/use-cases/product.usecase';
 
 
 export const appConfig: ApplicationConfig = {

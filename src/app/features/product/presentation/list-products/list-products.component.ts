@@ -6,7 +6,8 @@ import { InputPrimaryComponent } from '../../../../shared/components/input-prima
 import { ButtonPrimaryComponent } from '../../../../shared/components/button-primary/button-primary.component';
 
 import { SelectPrimaryComponent } from "../../../../shared/components/select-primary/select-primary.component";
-import { ListProductsFacade } from '../../application/list-products.facade';
+import { ListProductsFacade } from '../../application/facades/list-products.facade';
+
 
 @Component({
   selector: 'app-list-products',
