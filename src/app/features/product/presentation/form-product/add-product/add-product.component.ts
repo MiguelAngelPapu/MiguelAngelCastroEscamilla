@@ -5,6 +5,7 @@ import { ButtonPrimaryComponent } from '../../../../../shared/components/button-
 import { getFormErrorMessage, productIdUniqueValidator, releaseDateValidator } from '../../../../../shared/core/validators/validators';
 import { AddProductFacade } from '../../../application/add-product.facade';
 import { MyProduct } from '../../../domain/models/product.model';
+import { ProductService } from '../../../application/product.service';
 
 @Component({
   selector: 'add-product',
@@ -15,10 +16,11 @@ import { MyProduct } from '../../../domain/models/product.model';
 export class AddProductComponent {
   facade = inject(AddProductFacade);
   private formBuilder = inject(FormBuilder);
+  private productService = inject(ProductService);
 
   // Formulario reactivo
   form = this.formBuilder.group({
-    id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)], [productIdUniqueValidator()]],
+    id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)], [productIdUniqueValidator(this.productService)]],
     name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
     description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
     logo: ['', Validators.required],

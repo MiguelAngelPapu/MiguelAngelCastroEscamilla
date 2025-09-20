@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ProductRepository } from '../domain/repositories/product.repository';
 import { Observable } from 'rxjs';
-import { Product, ProductDeletionConfirmation, MyProduct } from '../domain/models/product.model';
+import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from '../domain/models/product.model';
 
 
 @Injectable({
@@ -37,10 +37,21 @@ export class ProductService {
     }
 
     /**
-   * Caso de Uso para verificar un producto por su ID.
-   * Devuelve true o false según la verificación.
-   */
+     * Caso de Uso para verificar un producto por su ID.
+     * Devuelve true o false según la verificación.
+     */
     verificationProduct(id: string): Observable<boolean> {
         return this.productRepository.verificationProduct(id);
     }
+    /**
+     * Caso de Uso para actualizar un producto existente.
+     * Delega la actualización al repositorio.
+     * @param id El ID del producto a actualizar
+     * @param product Los nuevos datos del producto
+     * @returns Un Observable<MyProduct> con el producto actualizado
+     */
+    updateProduct(id: string, product: MyProduct): Observable<ProductUpdate> {
+        return this.productRepository.update(id, product);
+    }
+    
 }

@@ -21,7 +21,7 @@
 
     <li 
       class="dropdown__item"
-      (click)="showModalEditar()"
+      [routerLink]="['/form-product', 'edit', id()]"
       >Editar</li>
     <li 
       class="dropdown__item dropdown__item--danger" 

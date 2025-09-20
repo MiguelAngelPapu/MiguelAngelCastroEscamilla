@@ -31,3 +31,17 @@ export interface ProductApiMessage {
     date_release:  string;
     date_revision: string;
 }
+
+// Response update
+export interface ProductUpdateByIdRespose {
+    message: string;
+    data:    ProductApiMessage;
+}
+
+export interface ProductApiMessage {
+    name:          string;
+    description:   string;
+    logo:          string;
+    date_release:  string;
+    date_revision: string;
+}

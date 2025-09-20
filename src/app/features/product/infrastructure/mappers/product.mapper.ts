@@ -1,5 +1,5 @@
-import { Product, ProductDeletionConfirmation, MyProduct } from "../../domain/models/product.model";
-import { ProductApiResponse, ProductApiResult, ProductDeleteByIdRespose, ProductSaveRespose } from "../interfaces/product-api.interface";
+import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from "../../domain/models/product.model";
+import { ProductApiResponse, ProductApiResult, ProductDeleteByIdRespose, ProductSaveRespose, ProductUpdateByIdRespose } from "../interfaces/product-api.interface";
 
 // Mapea un solo producto desde 'ProductApiResult' al modelo 'Product'
 const toProduct = (response: ProductApiResult): Product => {
@@ -27,10 +27,21 @@ export const toDeleteMessage = (id: string, response: ProductDeleteByIdRespose):
 };
 
 
-
 export const toProductAdd = ({ data, message }: ProductSaveRespose): MyProduct => {
   return {
     id: data.id,
+    name: data.name,
+    description: data.description,
+    logo: data.logo,
+    date_release: data.date_release,
+    date_revision: data.date_revision,
+    message: message
+  };
+};
+
+
+export const toProductUpdate = ({ data, message }: ProductUpdateByIdRespose): ProductUpdate => {
+  return {
     name: data.name,
     description: data.description,
     logo: data.logo,

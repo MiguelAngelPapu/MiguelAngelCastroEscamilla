@@ -23,8 +23,5 @@ export const FORM_ERROR_MESSAGES: Record<string, Record<string, string>> = {
   date_revision: {
     required: 'La fecha de revisión es obligatoria',
     invalidRevisionDate: 'Debe ser 1 año después de la liberación'
-  },
-  search: {
-    minlength: 'Mínimo 3 caracteres para buscar el producto',
   }
 };

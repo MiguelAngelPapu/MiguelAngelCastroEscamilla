@@ -2,16 +2,15 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductRepository } from '../domain/repositories/product.repository';
 
-import { Product, ProductDeletionConfirmation, MyProduct } from '../domain/models/product.model';
+import { Product, ProductDeletionConfirmation, MyProduct, ProductUpdate } from '../domain/models/product.model';
 import { environment } from '../../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { ProductApiResponse, ProductDeleteByIdRespose, ProductSaveRespose } from './interfaces/product-api.interface';
-import { toProducts, toDeleteMessage, toProductAdd } from './mappers/product.mapper';
+import { toProducts, toDeleteMessage, toProductAdd, toProductUpdate } from './mappers/product.mapper';
 
 
 @Injectable() // No necesita providedIn: 'root' porque lo proveeremos manualmente
 export class ProductApiService extends ProductRepository {
-
     private http = inject(HttpClient);
     private apiUrl = environment.apiUrl;
 
@@ -43,5 +42,15 @@ export class ProductApiService extends ProductRepository {
 
     override verificationProduct(id: string): Observable<boolean> {
         return this.http.get<boolean>(`${this.apiUrl}/bp/products/verification/${id}`);
+    }
+
+    override update(id: string, product: MyProduct): Observable<ProductUpdate> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+        return this.http.put<ProductSaveRespose>(`${this.apiUrl}/bp/products/${id}`, product, { headers })
+            .pipe(
+                map(response => toProductUpdate(response))
+            );
     }
 }

@@ -1,0 +1,84 @@
+<div class="update-product">
+  <h1 class="update-product__title">Edición de Registro</h1>
+
+  <form 
+    id="productForm"
+    [formGroup]="form" 
+    class="update-product__form" 
+    (ngSubmit)="onSubmit()">
+
+    <div class="update-product__row">
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['id']"
+        [label]="'ID'"
+        [errorMessage]="getFormErrorMessage(form.controls['id'])"
+      />
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['name']"
+        [label]="'Nombre'"
+        [placeholder]="'Tarjeta Crédito'"
+        [errorMessage]="getFormErrorMessage(form.controls['name'])"
+      />
+    </div>
+
+    <div class="update-product__row">
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['description']"
+        [label]="'Descripción'"
+        [errorMessage]="getFormErrorMessage(form.controls['description'])"
+      />
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['logo']"
+        [label]="'Logo'"
+        [errorMessage]="getFormErrorMessage(form.controls['logo'])"
+      />
+    </div>
+
+    <div class="update-product__row">
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['date_release']"
+        [type]="'date'"
+        [label]="'Fecha liberación'"
+        [errorMessage]="getFormErrorMessage(form.controls['date_release'])"
+      />
+      <input-primary
+        class="update-product__field"
+        [control]="form.controls['date_revision']"
+        [type]="'date'"
+        [label]="'Fecha Revisión'"
+        [errorMessage]="getFormErrorMessage(form.controls['date_revision'])"
+      />
+    </div>
+  </form>
+
+  <div class="update-product__actions">
+    <button-primary 
+      class="update-product__button" 
+      [variant]="'cancel'"
+      [label]="'Cancelar'" 
+      (click)="cancelEditMode()"
+      [disabled]="!isEditMode()"
+      />
+    <button-primary 
+      class="update-product__button" 
+      [variant]="'cancel'"
+      [label]="'Editar'" 
+      (click)="enableEditMode()"
+      [disabled]="isEditMode()"
+      />
+    <button-primary 
+      class="update-product__button"
+      [type]="'submit'"
+      [variant]="'confirm'"
+      [label]="'Actualizar'"
+      [form]="'productForm'"
+      [disabled]="!form.valid || !isEditMode()"
+      />
+  </div>
+
+</div>

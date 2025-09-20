@@ -1,21 +1,20 @@
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { catchError, delay, map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { FORM_ERROR_MESSAGES } from '../constants/form-errors';
 import { Product } from '../../../features/product/domain/models/product.model';
 import { ProductService } from '../../../features/product/application/product.service';
-import { inject } from '@angular/core';
 
 // Validador asíncrono para ID único
-export function productIdUniqueValidator(): AsyncValidatorFn {
-  const productService = inject(ProductService);
-
+export function productIdUniqueValidator(productService: ProductService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    if (!control.value) return of(null); // No hay valor, no hay error
+    if (!control.value) {
+      return of(null); // sin valor, sin error
+    }
 
     return productService.verificationProduct(control.value).pipe(
       map((exists: boolean) => (exists ? { idExists: true } : null)),
-      catchError(() => of(null)) // Si hay error en la petición, no bloquea el form
+      catchError(() => of(null)) // si hay error en la API, no bloquea el form
     );
   };
 }
