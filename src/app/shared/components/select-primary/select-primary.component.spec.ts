@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SelectPrimaryComponent } from './select-primary.component';
 
 describe('SelectPrimaryComponent', () => {
@@ -14,6 +13,7 @@ describe('SelectPrimaryComponent', () => {
 
     fixture = TestBed.createComponent(SelectPrimaryComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('data', []);
     fixture.detectChanges();
   });
 

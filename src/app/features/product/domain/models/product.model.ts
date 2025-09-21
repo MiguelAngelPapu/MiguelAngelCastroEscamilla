@@ -3,8 +3,8 @@ export interface Product {
   name: string;
   description: string;
   logo: string;
-  date_releas: Date;
-  date_revision: Date;
+  date_release: string;
+  date_revision: string;
   message?:string;
 }
 

@@ -67,7 +67,7 @@ export class UpdateProductFacade {
                     name: product.name,
                     description: product.description,
                     logo: product.logo,
-                    date_release: new Date(product.date_releas).toISOString().split('T')[0]
+                    date_release: new Date(product.date_release).toISOString().split('T')[0]
                 });
             }
         } else {

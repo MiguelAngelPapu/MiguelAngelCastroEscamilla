@@ -8,8 +8,8 @@ const toProduct = (response: ProductsResponseResult): Product => {
     name: response.name,
     description: response.description,
     logo: response.logo,
-    date_releas: new Date(response.date_release),
-    date_revision: new Date(response.date_revision)
+    date_release: new Date(response.date_release).toDateString(),
+    date_revision: new Date(response.date_revision).toDateString(),
   };
 };
 
@@ -19,6 +19,8 @@ export const toProducts = (response: GetProductsResponse): Product[] => {
 };
 
 export const toDeleteMessage = (id: string, response: ProductDeleteByIdRespose): DeleteProductDto => {
+  // The mapper transforms the API delete response into a DeleteProductDto.
+  // Preserve the API message so callers get the original server message.
   return {
     id,
     message: response.message

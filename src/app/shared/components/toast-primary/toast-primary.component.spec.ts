@@ -14,6 +14,10 @@ describe('ToastPrimaryComponent', () => {
 
     fixture = TestBed.createComponent(ToastPrimaryComponent);
     component = fixture.componentInstance;
+  
+    fixture.componentRef.setInput('text', 'This is a test message');
+    fixture.componentRef.setInput('isSuccess', true);
+
     fixture.detectChanges();
   });
 

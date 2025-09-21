@@ -1,4 +1,4 @@
-import { Component, input, Output } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'button-primary',

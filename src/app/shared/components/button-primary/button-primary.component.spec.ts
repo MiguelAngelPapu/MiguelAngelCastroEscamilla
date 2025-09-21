@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ButtonPrimaryComponent } from './button-primary.component';
 
 describe('ButtonPrimaryComponent', () => {
@@ -8,13 +7,14 @@ describe('ButtonPrimaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonPrimaryComponent]
-    })
-    .compileComponents();
+      imports: [ButtonPrimaryComponent] 
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonPrimaryComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.componentRef.setInput('label', 'Test Button');
+    fixture.detectChanges(); 
+    
   });
 
   it('should create', () => {
