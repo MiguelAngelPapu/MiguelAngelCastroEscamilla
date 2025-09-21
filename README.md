@@ -1,59 +1,178 @@
-# MiguelAngelCastroEscamilla
+# Instalación y ejecución del proyecto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Guía completa de instalación y ejecución del proyecto **Angular 19 LTS** con su backend.
 
-## Development server
+---
 
-To start a local development server, run:
+## 1. Requisitos
+
+Antes de empezar, asegúrate de tener:
+
+- Node.js **v20.19.5**
+- npm (incluido con Node v20.19.5)
+- Angular CLI **v19.2.17** (global)
+- nvm (Node Version Manager) para gestionar la versión de Node
+
+---
+
+## 2. Configurar Node con nvm
+
+macOS / Linux (bash, zsh):
+
+```bash
+# Instalar y usar la versión del proyecto
+nvm install 20.19.5
+nvm use 20.19.5
+
+# Verificar versiones
+node -v   # debe mostrar v20.19.5
+npm -v
+```
+
+**Windows:** usa [nvm-windows](https://github.com/coreybutler/nvm-windows) y ejecuta:
+
+```powershell
+nvm install 20.19.5
+nvm use 20.19.5
+```
+
+Guías rápidas:
+
+- Linux: https://gndx.dev/blog/instalar-nvm-en-ubuntu-20-04/
+- Mac: https://formulae.brew.sh/formula/nvm
+- Video (Windows): https://www.youtube.com/watch?v=BWl0m1hL7u8
+- Video (Mac/Linux): https://www.youtube.com/watch?v=X89QPv-zBAA
+
+---
+
+## 3. Instalar Angular CLI (global)
+
+```bash
+npm install -g @angular/cli@19.2.17
+ng version
+```
+
+---
+
+## 4. Instalación del Frontend
+
+1. Descargar el archivo `.zip` del frontend (`MiguelAngelCastroEscamilla`).
+2. Descomprimir en la carpeta deseada.
+3. Abrir una terminal y navegar a la carpeta del proyecto.
+
+**macOS / Linux (bash, zsh):**
+
+```bash
+cd ~/Descargas/MiguelAngelCastroEscamilla
+```
+
+**Windows (PowerShell):**
+
+```powershell
+cd 'C:\Users\TuUsuario\Downloads\MiguelAngelCastroEscamilla'
+```
+
+4. Instalar dependencias:
+
+```bash
+npm install
+```
+
+---
+
+## 5. Ejecutar el Frontend
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acceder en el navegador: [http://localhost:4200](http://localhost:4200)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Cambiar el puerto (opcional):
 
 ```bash
-ng generate component component-name
+ng serve --port 4300
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
+
+## 6. Ejecutar tests
+
+Para ejecutar la suite de tests y ver los resultados en el navegador (Karma):
 
 ```bash
-ng generate --help
+ng test --code-coverage
 ```
 
-## Building
-
-To build the project run:
+Para ejecutar los tests una única vez (sin modo watch) y generar el reporte de cobertura:
 
 ```bash
-ng build
+ng test --code-coverage --watch=false
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+El informe de cobertura se genera en la carpeta `coverage/` del proyecto; puedes abrir `coverage/index.html` para ver el detalle. Además, al ejecutar los tests (Karma) con `--code-coverage` verás un resumen de cobertura en la consola.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 7. Configuración del Backend
+
+1. Descargar el archivo `.zip` del backend (`repo-interview`).
+2. Descomprimir en la carpeta deseada.
+3. Abrir una terminal y navegar a la carpeta del backend.
+
+**macOS / Linux (bash, zsh):**
 
 ```bash
-ng test
+cd ~/Descargas/repo-interview
 ```
 
-## Running end-to-end tests
+**Windows (PowerShell):**
 
-For end-to-end (e2e) testing, run:
+```powershell
+cd 'C:\Users\TuUsuario\Downloads\repo-interview'
+```
+
+4. Instalar dependencias:
 
 ```bash
-ng e2e
+npm install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+> Nota: Incluye `cors` para permitir consumo de la API desde el frontend.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 8. Ejecutar el Backend
+
+```bash
+npm run start:dev
+```
+
+La API se servirá por defecto en: [http://localhost:3002](http://localhost:3002)
+
+Si usas un puerto diferente, verifica la variable de entorno `PORT` antes de arrancar.
+
+---
+
+## 9. Notas finales
+
+- Siempre usar la versión de Node indicada:
+
+```bash
+nvm use 20.19.5
+```
+
+- Angular CLI 19.2.17 es obligatoria para compatibilidad con componentes y librerías.
+- Esta guía aplica para **Linux, Mac y Windows**.
+
+Si tuviste algún problema con la instalación o al levantar los servicios, puedes escribirme al: **+57 3045641916**.
+
+### Recomendación VS Code
+
+- Abrir dos ventanas de VS Code: una para frontend y otra para backend.
+- En cada terminal integrada:
+  - Ejecutar `nvm use 20.19.5` (si aplica).
+  - Instalar dependencias (`npm install`).
+  - Levantar los servicios (`ng serve` para frontend y `npm run start:dev` para backend).
+
+Esto permite ver logs independientes y controlar procesos sin mezclar terminales.
