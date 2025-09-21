@@ -10,7 +10,7 @@ Antes de empezar, asegúrate de tener:
 
 - Node.js **v20.19.5**
 - npm (incluido con Node v20.19.5)
-- Angular CLI **v19.2.17** (global)
+- Angular CLI **v19.2.15** (global)
 - nvm (Node Version Manager) para gestionar la versión de Node
 
 ---
@@ -48,7 +48,7 @@ Guías rápidas:
 ## 3. Instalar Angular CLI (global)
 
 ```bash
-npm install -g @angular/cli@19.2.17
+npm install -g @angular/cli@19.2.15
 ng version
 ```
 
@@ -162,7 +162,7 @@ Si usas un puerto diferente, verifica la variable de entorno `PORT` antes de arr
 nvm use 20.19.5
 ```
 
-- Angular CLI 19.2.17 es obligatoria para compatibilidad con componentes y librerías.
+- Angular CLI 19.2.15 es obligatoria para compatibilidad con componentes y librerías.
 - Esta guía aplica para **Linux, Mac y Windows**.
 
 Si tuviste algún problema con la instalación o al levantar los servicios, puedes escribirme al: **+57 3045641916**.
